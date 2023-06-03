@@ -1,6 +1,31 @@
 #include <stdio.h>
 #include<string.h>
 
+// TODO: Agregar el archivo a leer como segundo argumento
+// TODO: Validar fin del archivo y mandar error si no se ha cerrado
+// el comentario multilínea
+
+void print_string(char* string){
+    int i = 0;
+
+    while(string[i] != '\0'){
+        printf("%c", string[i]);
+        i++;
+    }
+    printf("\n");
+}
+
+void print_state(char* string, int i, char state){
+    char character = string[i];
+    if(state == 'F'){
+        printf("%c, Q(F)\n", character);
+    } else if(state == 'E'){
+        printf("%c, Q(E)\n", character);
+    } else {
+        printf("%c (%d), Q(%c)\n", character, character, state);
+    }
+}
+
 int error_message(int error){
     /*
      * Imprime mensajes de error relacionados con el manejo de
@@ -48,8 +73,71 @@ int error_state_message(char error){
     return error;
 }
 
-char automat(char* string){
+char automata_comentarios(char* string){
     char state = '0';
+    int i = 0;
+    int iter = 0;
+    char character = string[i];
+
+    printf("Entrada autómata comentarios: ");
+    print_string(string);
+
+    while (character != '\0'){
+
+        switch (state) {
+        }
+
+        print_state(string, i, state);
+
+        if(state == 'E'){
+            break;
+        }
+        i++;
+        character = string[i];
+    }
+
+    if(state == 'E'){
+        state = i + 48;
+    }
+
+
+    if(character == '\0' && state != 'F'){
+        state = '.';
+    }
+    return state;
+}
+
+char automata_funciones(char* string){
+    char state = '0';
+    int i = 0;
+    int iter = 0;
+    char character = string[i];
+
+    printf("Entrada autómata funciones: ");
+    print_string(string);
+
+    while (character != '\0'){
+
+        switch (state) {
+        }
+
+        print_state(string, i, state);
+
+        if(state == 'E'){
+            break;
+        }
+        i++;
+        character = string[i];
+    }
+
+    if(state == 'E'){
+        state = i + 48;
+    }
+
+
+    if(character == '\0' && state != 'F'){
+        state = '.';
+    }
     return state;
 }
 
@@ -70,8 +158,14 @@ int main(){
     }
     else{
         while((read = getline(&line, &len, f)) != -1){
-            printf("%s", line);
-            state = automat(line);
+            printf("------------\n");
+            char character = line[0];
+            if(character == '/'){
+                state = automata_comentarios(line);
+            }
+            if(character == 'c'){
+                state = automata_funciones(line);
+            }
         }
     }
 

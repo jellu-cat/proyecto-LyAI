@@ -1,3 +1,2 @@
-gato
-vaca
-elefante
+// c
+cin
