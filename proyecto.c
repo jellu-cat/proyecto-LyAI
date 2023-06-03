@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include<string.h>
 
-// TODO: Agregar el archivo a leer como segundo argumento
 // TODO: Validar fin del archivo y mandar error si no se ha cerrado
 // el comentario multilínea
 
@@ -26,7 +25,7 @@ void print_state(char* string, int i, char state){
     }
 }
 
-int error_message(int error){
+int error_message(int error, char *file){
     /*
      * Imprime mensajes de error relacionados con el manejo de
      * archivos.
@@ -35,6 +34,12 @@ int error_message(int error){
     switch (error) {
     case 1:
         strcpy(message, "Archivo no encontrado.");
+        break;
+    case 2:
+        strcpy(message, "Se recibió más de un archivo.");
+        break;
+    case 3:
+        strcpy(message, "No se recibió archivo.");
         break;
     }
 
@@ -141,32 +146,49 @@ char automata_funciones(char* string){
     return state;
 }
 
-int main(){
+int main(int argc, char *argv[]){
+
+    // variables de lectura de archivo
     FILE *f;
-    char c[1000];
     char* line = NULL;
     size_t len = 0;
     ssize_t read = 0;
+    // -------------------------------
+
+    // argumentos del programa
+    char *string = argv[1];
+    // -----------------------
 
     char state = '0'; // 48
     int exit = 0;
 
-    f = fopen("test-1.txt", "r");
-    if (!f){
-        exit = 1;
-        exit = error_message(exit);
-    }
-    else{
-        while((read = getline(&line, &len, f)) != -1){
-            printf("------------\n");
-            char character = line[0];
-            if(character == '/'){
+    if(argc == 2){
+        f = fopen(argv[1], "r");
+        if (!f) {
+            exit = 1;
+            exit = error_message(exit, argv[1]);
+        }
+
+        else {
+            while ((read = getline(&line, &len, f)) != -1) {
+              printf("------------\n");
+              char character = line[0];
+              if (character == '/') {
                 state = automata_comentarios(line);
-            }
-            if(character == 'c'){
+              }
+              if (character == 'c') {
                 state = automata_funciones(line);
+              }
             }
         }
+    }
+
+    else if (argc > 2) {
+        exit = 2;
+        exit = error_message(exit, argv[1]);
+    } else if (argc == 1) {
+        exit = 3;
+        exit = error_message(exit, argv[1]);
     }
 
     if (state != 'E'){
