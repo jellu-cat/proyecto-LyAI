@@ -56,6 +56,9 @@ char automat(char* string){
 int main(){
     FILE *f;
     char c[1000];
+    char* line = NULL;
+    size_t len = 0;
+    ssize_t read = 0;
 
     char state = '0'; // 48
     int exit = 0;
@@ -66,9 +69,7 @@ int main(){
         exit = error_message(exit);
     }
     else{
-        while(fgets(c, 1000, f)){
-            char line[1000];
-            strcpy(line, c);
+        while((read = getline(&line, &len, f)) != -1){
             printf("%s", line);
             state = automat(line);
         }
