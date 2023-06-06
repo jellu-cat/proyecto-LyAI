@@ -1,0 +1,12 @@
+/* Programa de prueba para saludar al usuario,
+ si el mensaje se detiene estará pidiendo algún
+ dato para poder personalizar el mensaje (:	*/
+
+cin >> nombre;
+
+cout << "Hola -" << nombre << "Es un placer saludarle y conocerlo. Bienvenido... usted nos visita desde...";
+
+cin >> pais;
+
+//Proximamente se agregarán más funciones...
+

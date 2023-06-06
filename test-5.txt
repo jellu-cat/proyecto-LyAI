@@ -1,0 +1,9 @@
+// Un programa que...
+
+//¿Mandará algún mensaje?
+
+/* Bueno, si hay puros comentarios, no creo que sea posible de mandar algo al programa *
+
+//Al menos de que a alguien se le haya olvidado un pequeño detalle en el comentario anterior
+
+/* Salu2 */

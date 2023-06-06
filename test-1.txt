@@ -1,2 +1,10 @@
-// c
-cin
+// Programa para recaudar datos de la empresa "[LOS INGES]"
+
+cout << "--- Bienvenido ---";
+cout << "Ingresa los datos obtenidos de esta semana";
+
+/* Se deben de ingresar uno a uno
+ cuando el programa lo indique		*/
+
+cin >> Dato1;
+cin >> Dato2;

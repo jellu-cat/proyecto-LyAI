@@ -1,0 +1,7 @@
+/* Ahora en este todo se supone que todo está ALL TOO WELL, pero... */
+
+cout << "Habrá un error... ¿O no?" << 100 << "(:";
+
+// cin >> que habrá de raro
+
+cout << "Bueno, creo que no";

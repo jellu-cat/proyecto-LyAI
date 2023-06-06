@@ -1,0 +1,11 @@
+// Este archivo promete poner una prueba de fuego
+
+/* ¿Esto es un comentario... o no se cortará si...
+
+Hacemos algo así como esto...
+
+cout << "Hola mundo";	*/
+
+cout << //¿Comentario?
+
+//¿Arriba marcará error?
